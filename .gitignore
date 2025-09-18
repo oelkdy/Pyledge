@@ -1,0 +1,20 @@
+node_modules/
+.env
+.env.*
+dist/
+build/
+*.log
+.DS_Store
+
+# large binaries
+addressbook/public/Vids/
+pyledge.zip
+node_modules/
+.env
+.env.*
+dist/
+build/
+*.log
+.DS_Store
+addressbook/public/Vids/
+pyledge.zip
