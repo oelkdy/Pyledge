@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title Books
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/stylesheets/book.css")
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    script.
+      $(document).ready(function() {
+        $('.dropdown').on('click', function() {
+          $(this).toggleClass('open');
+        });
+      });
+  body
+    .container
+      header
+        h1 Books 
+        nav
+          ul.menu
+            li
+              a(href="/profile") Profile
+            li.dropdown
+              a(href="#") Menu
+              ul.dropdown-menu
+                li
+                  a(href="/exercises") Exercises
+                li
+                  a(href="/logout") Logout
+      main
+        a.back-button(href="/dashboard") Back to Dashboard
+        section
+          ul.books-list
+            each book in books
+              li
+                a(href=book.url target="_blank")= book.title
+                span
+                  |  ( 
+                  a(href=book.url download) Download
+                  |  )
+          

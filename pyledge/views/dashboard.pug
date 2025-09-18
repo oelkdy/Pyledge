@@ -1,0 +1,77 @@
+doctype html
+html
+  head
+    title Dashboard
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/stylesheets/dashboard.css")
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    script.
+      $(document).ready(function() {
+        $('.dropdown').on('click', function() {
+          $(this).toggleClass('open');
+        });
+
+        let inactivityTime = function () {
+          let time;
+          window.onload = resetTimer;
+          window.onmousemove = resetTimer;
+          window.onmousedown = resetTimer; // catches touchscreen presses as well
+          window.ontouchstart = resetTimer; // catches touchscreen swipes as well
+          window.ontouchmove = resetTimer; // required for touchscreen devices
+          window.onclick = resetTimer;     // catches touchpad clicks as well
+          window.onkeypress = resetTimer;
+
+          function logout() {
+            window.location.href = '/logout'; // redirects to logout route
+          }
+
+          function resetTimer() {
+            clearTimeout(time);
+            time = setTimeout(logout, 30000); // 30 seconds of inactivity
+          }
+        };
+
+        inactivityTime();
+      });
+  body
+    .container
+      header
+        h1 Welcome, #{username}!
+        nav
+          ul.menu
+            li
+              a(href="/profile") Profile
+            li.dropdown
+              a(href="#") Menu
+              ul.dropdown-menu
+                li
+                  a(href="/exercises") Exercises
+                li 
+                  a(href="/books") Books
+                li
+                  a(href="/logout") Logout
+                
+      main
+        section
+          h2 Introduction to Python
+          p
+            | Python is a powerful and versatile programming language that is easy to learn and fun to use. 
+            | Whether you are a beginner or an experienced programmer, Python has something to offer. 
+            | With Python, you can develop web applications, automate tasks, analyze data, 
+            | create machine learning models, and much more.
+          p
+            | Python's syntax is designed to be readable and straightforward, 
+            | which makes it an excellent choice for people who are new to programming. 
+            | The Python community is also very active and supportive, providing a wealth of resources 
+            | and libraries that you can use to enhance your projects.
+        section
+          h2 About Our Website
+          p
+            | Our website is dedicated to helping you learn and master Python programming. 
+            | We offer a variety of tutorials, exercises, and projects that are designed to teach you 
+            | the fundamentals of Python and help you apply what you have learned in real-world scenarios.
+          p
+            | You can track your progress through your profile, complete exercises to reinforce your learning, 
+            | and work on projects that will help you build a portfolio of Python applications. 
+            | Join our community of learners and start your journey to becoming a Python expert today!

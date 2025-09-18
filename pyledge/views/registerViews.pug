@@ -1,0 +1,80 @@
+doctype html
+html
+  head
+    title User Registration
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .register-form {
+        width: 90%;
+        max-width: 400px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .register-form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .register-form label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .register-form input[type="text"],
+      .register-form input[type="email"],
+      .register-form input[type="password"],
+      .register-form select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+      .register-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .register-form button:hover {
+        background-color: #0056b3;
+      }
+      #email-error {
+        font-size: 12px;
+        margin-top: -10px;
+        margin-bottom: 10px;
+      }
+
+  body
+    div.register-form
+      h1 Registration Form
+      form(action="/register", method="post")
+        label(for="email") Email:
+        input#email(type="email", name="email", required)
+        label(for="username") Username:
+        input#username(type="text", name="username", required)
+        label(for="password") Password:
+        input#password(type="password", name="password", required)
+        label(for="type") Type:
+        select#type(name="type", required)
+          option(value="student") Student
+          option(value="instructor") Instructor
+        button#register-button(type='submit') Sign Up
+        p#email-error
+        a(href="/loginViews") Already Registered? Login
+      script(src='/javascripts/checkEmail.js')

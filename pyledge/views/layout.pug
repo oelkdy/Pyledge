@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title My Application
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/stylesheets/style.css")
+  body
+    block content
+
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    script.
+      let inactivityTime = function () {
+        let time;
+        window.onload = resetTimer;
+        window.onmousemove = resetTimer;
+        window.onmousedown = resetTimer; // catches touchscreen presses as well
+        window.ontouchstart = resetTimer; // catches touchscreen swipes as well
+        window.ontouchmove = resetTimer; // required for touchscreen devices
+        window.onclick = resetTimer;     // catches touchpad clicks as well
+        window.onkeypress = resetTimer;
+
+        function logout() {
+          window.location.href = '/logout'; // redirects to logout route
+        }
+
+        function resetTimer() {
+          clearTimeout(time);
+          time = setTimeout(logout, 30000); // 30 seconds of inactivity
+        }
+      };
+
+      inactivityTime();

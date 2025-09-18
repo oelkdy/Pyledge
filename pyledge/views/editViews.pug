@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Edit Profile
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/stylesheets/edit.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="/javascripts/checkPassword.js")
+  body
+    .container
+      header
+        h1 Edit Profile
+        a.back-button(href="/profile") Back to Profile
+      main
+        form(action="/profile/edit" method="post")
+          .form-group
+            label(for="name") Name:
+            input#name(type="text" name="name" value=user.name required)
+          .form-group
+            label(for="email") Email:
+            input#email(type="email" name="email" value=user.email required)
+            span#email-error
+          .form-group
+            label(for="password") New Password:
+            input#password(type="password" name="password")
+            span#password-error
+          .form-group
+            label(for="confirmPassword") Confirm New Password:
+            input#confirmPassword(type="password" name="confirmPassword")
+            span#confirmPassword-error
+          .form-group
+            button(type="submit") Update Profile

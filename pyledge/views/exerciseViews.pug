@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    title Exercises
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
+  body
+    .container
+      header
+        h1 Exercises
+        a.back-button(href="/dashboard") Back to Dashboard
+      main
+        form#exercise-form
+          each question, index in questions
+            .question
+              p Question #{index + 1}: #{question.question}
+              ul
+                each option, optionIndex in question.options
+                  li
+                    input(type="radio" id=`question-${index}-${optionIndex}` name=`question-${index}` value=option)
+                    label(for=`question-${index}-${optionIndex}`) #{option}
+          button.btn.btn-primary(type="submit") Submit
+
+    // Include the modal for displaying the score
+    .modal.fade#scoreModal(tabindex="-1" role="dialog")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            h5.modal-title Score
+            button.close(type="button" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+          .modal-body
+            p#score-text You scored 0 out of 10
+          .modal-footer
+            button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+
+    script.
+      $(document).ready(function() {
+        $('#exercise-form').on('submit', function(event) {
+          event.preventDefault();
+          
+          const formData = $(this).serialize();
+          
+          $.ajax({
+            type: 'POST',
+            url: '/exercise/submit',
+            data: formData,
+            success: function(response) {
+              $('#score-text').text(`You scored ${response.score} out of ${response.total}`);
+              $('#scoreModal').modal('show');
+            },
+            error: function() {
+              alert('An error occurred. Please try again.');
+            }
+          });
+        });
+
+        // Close modal
+        $('.close').on('click', function() {
+          $('#scoreModal').hide();
+        });
+      });

@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    title Profile
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/stylesheets/profile.css")
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    script.
+      $(document).ready(function() {
+        // Delete confirmation
+        $('.delete-button').on('click', function(e) {
+          if (!confirm('Are you sure you want to delete your profile?')) {
+            e.preventDefault();
+          }
+        });
+
+        // Session timeout
+        let inactivityTime = function () {
+          let time;
+          window.onload = resetTimer;
+          window.onmousemove = resetTimer;
+          window.onmousedown = resetTimer;
+          window.ontouchstart = resetTimer;
+          window.ontouchmove = resetTimer;
+          window.onclick = resetTimer;
+          window.onkeypress = resetTimer;
+
+          function logout() {
+            window.location.href = '/logout';
+          }
+
+          function resetTimer() {
+            clearTimeout(time);
+            time = setTimeout(logout, 30000); // 30 seconds
+          }
+        };
+
+        inactivityTime();
+      });
+  body
+    .container
+      header
+        h1 Profile
+        a.back-button(href="/dashboard") Back to Dashboard
+      main
+        .profile-info
+          p
+            span.label Name:
+            span.value #{user.name}
+          p
+            span.label Type:
+            span.value #{user.type}
+          p
+            span.label Email:
+            span.value #{user.email}
+        .profile-actions
+          a.edit-button(href="/profile/edit") Edit
+          form(action="/profile/delete" method="POST" style="display:inline;")
+            button.delete-button(type="submit") Delete

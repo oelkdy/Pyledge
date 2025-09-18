@@ -1,0 +1,19 @@
+html
+
+
+    head 
+        Video Title 
+        
+
+    body 
+
+        video#vid(width='1000')
+            source(src='/Vids/LAB 6_video.mp4', type='video/mp4')
+
+        button(onclick='playPause()') Play/Pause
+        button(onclick='bigSmall()') Enlarge
+        button(onclick='muteUnmute()') Mute
+        button(onclick='loopNoloop()') Loop
+
+        script(src='/javascripts/control.js')
+

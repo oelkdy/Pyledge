@@ -1,0 +1,105 @@
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center; /* Center align text */
+}
+
+header h1 {
+    text-align: center;
+}
+
+.profile-info p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.profile-info .label {
+    font-weight: bold;
+    display: inline-block;
+    width: 100px;
+}
+
+.profile-info .value {
+    display: inline-block;
+}
+
+.profile-actions {
+    text-align: center;
+}
+
+button, a.edit-button {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 20px;
+    background: #5a9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button.delete-button {
+    background: #d9534f;
+}
+
+button:hover, a.edit-button:hover {
+    background: #4a8;
+}
+
+button.delete-button:hover {
+    background: #c9302c;
+}
+
+a.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    background: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a.back-button:hover {
+    background: #5a6268;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .profile-info p {
+        font-size: 16px;
+    }
+
+    .profile-info .label {
+        width: auto;
+        display: block;
+    }
+
+    .profile-info .value {
+        display: block;
+    }
+
+    button, a.edit-button, a.back-button {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}
